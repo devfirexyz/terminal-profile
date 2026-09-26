@@ -78,10 +78,12 @@ to be the Powerline one we installed earlier (required for the theme to display 
 If it looks funky after this command, then you might need to wait until the theme is updated with a
 Powerline font (the next step), and may need to also restart your machine.
 
-### WSL2 (Windows Terminal / Cursor)
+### WSL2 (Ubuntu on Windows Terminal)
 
-On WSL2 there is no GNOME Terminal and `install_profile.sh` cannot apply colors via `dconf`.
-Use the WSL install path instead (same shell setup; colors and font are applied on Windows):
+On WSL2 you typically run Ubuntu through **Windows Terminal**, not GNOME Terminal.
+`install_profile.sh` still sets up zsh, but its **`dconf` color step does not apply** on WSL.
+
+Use the WSL install path (same Linux steps as above; terminal colors/font are applied for the **Ubuntu WSL profile in Windows Terminal**):
 
 ```bash
 ./install_wsl.sh
@@ -90,15 +92,15 @@ Use the WSL install path instead (same shell setup; colors and font are applied 
 This runs the original `install_powerline.sh` and `install_terminal.sh`, then:
 
 - `install_profile_wsl.sh` — plugins, `.zshrc`, theme, and `chsh` (no `dconf`)
-- `wsl_apply_windows_terminal.sh` — Pixegami colors for Windows Terminal and Cursor, plus Powerline font registration on Windows
+- `wsl_apply_windows_terminal.sh` — Pixegami color scheme and Powerline font for the Ubuntu WSL profile (Windows Terminal + Microsoft.WSL fragment), plus font registration on Windows
 
-If you only need to refresh Windows-side colors/font after a shell install:
+To refresh colors/font only:
 
 ```bash
 ./wsl_apply_windows_terminal.sh
 ```
 
-Set `WIN_USER` if your Windows login name is not detected automatically. Set `APPLY_CURSOR=0` to skip Cursor `settings.json` changes.
+Set `WIN_USER` if your Windows login name is not detected automatically (`whoami.exe`).
 
 Check status:
 
@@ -106,7 +108,9 @@ Check status:
 ./diagnose_wsl.sh
 ```
 
-After install, click **Install** if Windows opens a font preview for **Roboto Mono for Powerline**, then fully restart Cursor and Windows Terminal.
+After install, click **Install** if Windows opens a font preview for **Roboto Mono for Powerline**, then fully restart **Windows Terminal** and open a new **Ubuntu** tab.
+
+> Other apps with their own embedded terminal (VS Code, etc.) use separate font/color settings; this WSL path targets **Windows Terminal**, the usual host for Ubuntu on WSL2.
 
 
 ## Notes

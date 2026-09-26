@@ -31,4 +31,4 @@ cp "${REPO_ROOT}/configs/pixegami-agnoster.zsh-theme" \
 
 chsh -s "$(command -v zsh)"
 
-echo "Shell profile installed. Run ./wsl_apply_windows_terminal.sh for colors and font on Windows."
+echo "Shell profile installed. Run ./wsl_apply_windows_terminal.sh for Ubuntu WSL colors/font in Windows Terminal."

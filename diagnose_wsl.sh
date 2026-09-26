@@ -35,7 +35,7 @@ else
 	warn "Theme file missing"
 fi
 
-echo "=== Windows Terminal / Cursor (host) ==="
+echo "=== Windows Terminal (Ubuntu WSL profile) ==="
 win_user="${WIN_USER:-}"
 if [[ -z "$win_user" ]] && command -v whoami.exe >/dev/null 2>&1; then
 	win_user="$(whoami.exe | tr -d '\r\n')"
@@ -46,7 +46,6 @@ if [[ -z "$win_user" ]]; then
 else
 	wt="/mnt/c/Users/${win_user}/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json"
 	wsl_frag="/mnt/c/Users/${win_user}/AppData/Local/Microsoft/Windows Terminal/Fragments/Microsoft.WSL/{d6c95319-5a40-5c47-b65e-bec40e033979}.json"
-	cursor="/mnt/c/Users/${win_user}/AppData/Roaming/Cursor/User/settings.json"
 
 	if [[ -f "$wt" ]] && grep -q Pixegami "$wt"; then
 		ok "Windows Terminal settings mention Pixegami"
@@ -59,19 +58,13 @@ else
 	else
 		warn "WSL fragment not patched or not found"
 	fi
-
-	if [[ -f "$cursor" ]] && grep -q 'terminal.background' "$cursor"; then
-		ok "Cursor terminal colors configured"
-	else
-		warn "Cursor terminal colors not set (optional; set APPLY_CURSOR=1 when applying)"
-	fi
 fi
 
 echo "=== dconf (native Ubuntu only) ==="
 if command -v dconf >/dev/null 2>&1; then
 	ok "dconf present (native GNOME path; not used on WSL)"
 else
-	ok "No dconf (expected on WSL — colors come from Windows Terminal / Cursor)"
+	ok "No dconf (expected on WSL — use Windows Terminal for colors)"
 fi
 
 echo ""

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Full Pixegami install for WSL2 (Linux shell + Windows Terminal / Cursor appearance).
+# Full Pixegami install for WSL2 (Linux shell + Windows Terminal Ubuntu profile).
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -23,8 +23,8 @@ WSL install finished.
 
 Next steps on Windows:
   1. If a font preview opens, click Install for "Roboto Mono for Powerline".
-  2. Fully quit Cursor and Windows Terminal, then reopen.
-  3. Open a new terminal tab and confirm zsh + Pixegami colors.
+  2. Fully quit Windows Terminal, then reopen.
+  3. Open a new Ubuntu (WSL) tab and confirm zsh + Pixegami colors.
 
 If the font is still missing, sign out of Windows once, or run:
   ./wsl_apply_windows_terminal.sh

@@ -1,4 +1,4 @@
-# Register Powerline fonts for the current Windows user (required for WT / Cursor).
+# Register Powerline fonts for the current Windows user (Windows Terminal on WSL).
 param(
     [Parameter(Mandatory = $true, Position = 0)]
     [string]$SourceDir
@@ -44,5 +44,5 @@ Get-ChildItem -LiteralPath $FontDir -Filter 'Roboto*.ttf' | ForEach-Object {
     Write-Output "AddFontResource $($_.Name): $rc"
 }
 
-Write-Output 'Font registration complete. Fully quit and reopen Cursor / Windows Terminal.'
+Write-Output 'Font registration complete. Fully quit and reopen Windows Terminal.'
 Write-Output 'If apps still complain, sign out of Windows once, or double-click Roboto Mono for Powerline.ttf and choose Install.'
