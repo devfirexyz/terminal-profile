@@ -78,6 +78,36 @@ to be the Powerline one we installed earlier (required for the theme to display 
 If it looks funky after this command, then you might need to wait until the theme is updated with a
 Powerline font (the next step), and may need to also restart your machine.
 
+### WSL2 (Windows Terminal / Cursor)
+
+On WSL2 there is no GNOME Terminal and `install_profile.sh` cannot apply colors via `dconf`.
+Use the WSL install path instead (same shell setup; colors and font are applied on Windows):
+
+```bash
+./install_wsl.sh
+```
+
+This runs the original `install_powerline.sh` and `install_terminal.sh`, then:
+
+- `install_profile_wsl.sh` — plugins, `.zshrc`, theme, and `chsh` (no `dconf`)
+- `wsl_apply_windows_terminal.sh` — Pixegami colors for Windows Terminal and Cursor, plus Powerline font registration on Windows
+
+If you only need to refresh Windows-side colors/font after a shell install:
+
+```bash
+./wsl_apply_windows_terminal.sh
+```
+
+Set `WIN_USER` if your Windows login name is not detected automatically. Set `APPLY_CURSOR=0` to skip Cursor `settings.json` changes.
+
+Check status:
+
+```bash
+./diagnose_wsl.sh
+```
+
+After install, click **Install** if Windows opens a font preview for **Roboto Mono for Powerline**, then fully restart Cursor and Windows Terminal.
+
 
 ## Notes
 
